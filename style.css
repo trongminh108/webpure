@@ -1,0 +1,113 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+:root {
+    --time-effect: 0.5s;
+}
+
+.changeBG {
+    width: 110px;
+    height: 50px;
+    background-color: aqua;
+    border-radius: 50px;
+    transition: var(--time-effect);
+    position: relative;
+    border: 1px solid grey;
+}
+
+.changeBG::before {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    border-radius: 50px;
+    transition: var(--time-effect);
+    left: 0px;
+    background-image: url('assets/img/sun.png');
+    background-size: contain;
+}
+
+.checkbox:checked + .changeBG {
+    background-color: red;
+}
+
+.checkbox:checked + .changeBG::before {
+    left: 60px;
+    transform: rotate(360deg);
+    background-color: gray;
+    background-image: url('assets/img/moon.png');
+}
+
+input#changeBG {
+    display: none;
+}
+
+.rect {
+    width: 150px;
+    height: 50px;
+    background-color: red;
+    margin: 20px;
+}
+
+.circle1 {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: royalblue;
+    z-index: 2;
+    margin: 0;
+    border-radius: 50% 0 0 50%;
+}
+
+.circle2 {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+    z-index: 2;
+    margin: 0 0 0 -25px;
+    border-radius: 50% 0 0 50%;
+}
+
+.circle3 {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: darkblue;
+    z-index: 2;
+    margin: 0 0 0 -25px;
+    border-radius: 50% 0 0 50%;
+}
+
+.triangle {
+    --a: 200px;
+    --square3: 1.7321;
+    /* width: 10px;
+    height: 10px; */
+    border-left: var(--a) solid transparent;
+    border-right: var(--a) solid transparent;
+    border-bottom: calc(var(--square3) * var(--a)) solid royalblue;
+    position: relative;
+}
+
+.triangle::after {
+    content: '';
+    position: absolute;
+    top: calc(var(--square3) / 4 * var(--a));
+    left: calc(var(--a) / -2);
+    border-left: calc(var(--a) / 2) solid transparent;
+    border-right: calc(var(--a) / 2) solid transparent;
+    border-bottom: calc(var(--square3) * var(--a) / 2) solid white;
+}

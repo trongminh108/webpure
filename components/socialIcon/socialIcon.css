@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+:root {
+    --r: 50px;
+    --mr: 10px;
+}
+
+.container {
+    position: relative;
+}
+
+.name {
+    padding-right: var(--mr);
+    cursor: pointer;
+}
+
+.wrapper {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 100%;
+}
+
+.circle {
+    width: var(--r);
+    height: var(--r);
+    background: white no-repeat center center / cover;
+    border-radius: 50%;
+    margin-right: var(--mr);
+    transition: all 0.3s ease;
+    opacity: 0;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.circle:nth-child(1) {
+    background-image: url('../../assets/icons/fb_icon.png');
+    z-index: 4;
+}
+
+.circle:nth-child(2) {
+    background-image: url('../../assets/icons/zalo_icon.png');
+    transform: translateX(calc(var(--r) * -1 - var(--mr)));
+    z-index: 3;
+}
+
+.circle:nth-child(3) {
+    background-image: url('../../assets/icons/green_phone_icon.png');
+    transform: translateX(calc(var(--r) * -2 - var(--mr) * 2));
+    z-index: 2;
+}
+
+.circle:nth-child(4) {
+    background-image: url('../../assets/icons/gmail_icon.png');
+    transform: translateX(calc(var(--r) * -3 - var(--mr) * 3));
+    z-index: 1;
+}
+
+.name:hover + .wrapper .circle:nth-child(n) {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.wrapper:hover .circle:nth-child(n) {
+    transform: translateX(0);
+    opacity: 1;
+}
