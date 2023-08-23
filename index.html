@@ -7,17 +7,58 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
+        <div class="header"></div>
+
         <div class="nav">
             <a href="./components/socialIcon/socialIcon.html">Social Icons</a>
+            <a href="./components/search/search.html">Search bar</a>
+            <a href="./components/toggleButton/toggleButton.html"
+                >Toggle button</a
+            >
+            <a href="./components/previewImage/previewImage.html"
+                >Preview Image</a
+            >
         </div>
-        <input type="checkbox" class="checkbox" id="changeBG" />
-        <label for="changeBG" class="changeBG"></label>
 
-        <div class="rect">
-            <span class="circle1"></span><span class="circle2"></span
-            ><span class="circle3"></span>
-        </div>
+        <div class="content">Hello in content</div>
 
-        <div class="triangle"></div>
+        <div class="goToTop" onclick="handleGoToTop()">GO</div>
+
+        <script>
+            const header = document.querySelector('.header');
+            const nav = document.querySelector('.nav');
+            const btnGTT = document.querySelector('.goToTop');
+            const sticky = nav.offsetTop;
+
+            header.innerHTML = header.scrollWidth;
+
+            window.addEventListener('resize', () => {
+                header.innerHTML = header.scrollWidth;
+            });
+
+            window.onscroll = () => {
+                const scrollY = window.pageYOffset;
+                if (scrollY > sticky) nav.classList.add('sticky');
+                else nav.classList.remove('sticky');
+                if (scrollY === 0) {
+                    btnGTT.style.width = '0px';
+                    btnGTT.style.height = '0px';
+                    btnGTT.style.opacity = 0;
+                    btnGTT.style.transform = 'translateY(-1000%)';
+                } else {
+                    btnGTT.style.width = '50px';
+                    btnGTT.style.height = '50px';
+                    btnGTT.style.opacity = 1;
+                    btnGTT.style.transform = 'translateY(0)';
+                }
+            };
+
+            function handleGoToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth',
+                });
+            }
+        </script>
     </body>
 </html>

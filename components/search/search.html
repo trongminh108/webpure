@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Search bar</title>
+        <link rel="stylesheet" href="search.css" />
+    </head>
+    <body>
+        <div class="searchBar">
+            <input
+                type="text"
+                name="searchInput"
+                id="searchInput"
+                class="searchInput"
+                placeholder="Search films"
+                onkeydown="handleOnKeyDown(event)"
+            />
+            <div class="btnClear" onclick="handleOnClick()"></div>
+        </div>
+
+        <script>
+            const searchInput = document.querySelector('.searchInput');
+            const btnClear = document.querySelector('.btnClear');
+
+            function handleOnClick(e) {
+                searchInput.value = '';
+                if (document.activeElement === searchInput) {
+                    searchInput.blur();
+                }
+            }
+
+            function handleOnKeyDown(e) {
+                if (e.key === 'Enter') {
+                    alert(e.target.value);
+                }
+            }
+        </script>
+    </body>
+</html>

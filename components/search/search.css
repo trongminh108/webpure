@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+:root {
+    --w: 50px;
+    --h: 50px;
+    --fs: 18px;
+    --pl: 20px;
+    --mw: 7;
+}
+
+.searchBar {
+    position: relative;
+}
+
+.searchInput {
+    width: var(--w);
+    height: var(--h);
+    border-radius: var(--h);
+    border: 2px solid black;
+    padding-left: var(--pl);
+    font-size: var(--fs);
+    transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+}
+
+.searchInput::placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease-out 0.1s;
+}
+
+.searchInput:focus,
+.searchInput:not(:placeholder-shown) {
+    width: calc(var(--w) * var(--mw));
+}
+
+.searchInput:focus::placeholder {
+    opacity: 1;
+}
+
+.btnClear {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    cursor: pointer;
+    left: 104%;
+    top: 104%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    transition: top 0.5s ease, left 0.5s ease;
+}
+
+.btnClear::before {
+    content: '';
+    width: 0px;
+    height: 28px;
+    display: block;
+    border-radius: 3px;
+    border: 1px solid black;
+    position: absolute;
+    transition: transform 0.2s ease-out 0.5s;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.btnClear::after {
+    content: '';
+    width: 0px;
+    height: 28px;
+    display: block;
+    border-radius: 3px;
+    border: 1px solid black;
+    position: absolute;
+    transition: transform 0.2s ease-out;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.searchInput:focus + .btnClear,
+.searchInput:not(:placeholder-shown) + .btnClear {
+    top: 50%;
+    left: 90%;
+}
+
+.searchInput:focus + .btnClear::after,
+.searchInput:not(:placeholder-shown) + .btnClear::after {
+    transform: rotate(90deg);
+}

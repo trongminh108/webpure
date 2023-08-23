@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Preview Image</title>
+        <link rel="stylesheet" href="previewImage.css" />
+    </head>
+    <body>
+        <div class="container">
+            <input type="file" name="uploadImage" id="uploadImage" />
+            <img src="" alt="" id="blah" width="50%" height="50%" />
+        </div>
+
+        <script>
+            const img = document.querySelector('#blah');
+            const imgInp = document.querySelector('#uploadImage');
+
+            imgInp.onchange = (evt) => {
+                const [file] = imgInp.files;
+                if (file) {
+                    img.src = URL.createObjectURL(file);
+                }
+                console.log('test');
+            };
+        </script>
+    </body>
+</html>
