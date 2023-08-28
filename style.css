@@ -37,7 +37,7 @@ body {
 }
 
 .nav *:visited {
-    color: silver;
+    color: white;
 }
 
 .sticky {
@@ -48,6 +48,14 @@ body {
 .sticky + .content {
     padding-top: 50px;
     height: 250px;
+}
+
+.navItem {
+    transition: font-size 0.3s ease;
+}
+
+.navItem:hover {
+    font-size: 18px;
 }
 
 /*======================CONTENT======================*/
