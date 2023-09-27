@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Modal</title>
+        <link rel="stylesheet" href="modalEffect.css" />
+    </head>
+    <body>
+        <div class="btnOpen">Click me!</div>
+        <div class="overlay">
+            <div class="modalContainer">
+                <div class="modalHeader">
+                    <div class="btnClose">X</div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const btnOpen = document.querySelector('.btnOpen');
+            const btnClose = document.querySelector('.btnClose');
+            const overlay = document.querySelector('.overlay');
+            const modalContainer = document.querySelector('.modalContainer');
+
+            function handleCloseButton() {
+                overlay.classList.remove('open');
+                // modalContainer.classList.add('hidden');
+            }
+
+            btnOpen.addEventListener('click', () => {
+                overlay.classList.add('open');
+            });
+
+            btnClose.addEventListener('click', handleCloseButton);
+        </script>
+    </body>
+</html>

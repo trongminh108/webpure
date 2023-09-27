@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    perspective: 500px;
+    transform-style: preserve-3d;
+
+    .card {
+        width: 175px;
+        height: 250px;
+        background-color: blue;
+        border-radius: 30px;
+        transition: transform 1s ease-in-out;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 3em;
+        transform-style: preserve-3d;
+
+        & h2 {
+            transform: translateZ(50px);
+        }
+    }
+
+    &:hover .card {
+        cursor: pointer;
+        transform: translateY(-175px) rotateX(180deg);
+    }
+}
