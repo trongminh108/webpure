@@ -28,4 +28,5 @@ btnCal.addEventListener('click', () => {
     const res = (x * c - ab) / (c - tongSTC_TA);
 
     alert(`Sau khi xét điểm M: ${res}`);
+    tongSTC_TA = 12;
 });
