@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Download Image</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+        </style>
+    </head>
+    <body>
+        <label for="link"> Link: <input type="text" id="link" /> </label>
+        <!-- <label for="from">From <input type="number" id="from" /></label> -->
+        <label for="to">To <input type="number" id="to" /></label>
+        <button onclick="Generate()">Generate</button>
+        <div class="content"></div>
+
+        <script>
+            function removeAllChildNodes(parent) {
+                while (parent.firstChild) {
+                    parent.removeChild(parent.firstChild);
+                }
+            }
+
+            function Generate() {
+                let link = document.querySelector('#link').value;
+                const ls = link.lastIndexOf('/');
+                link = link.substring(0, ls + 1);
+                const to = document.querySelector('#to').value;
+                const content = document.querySelector('.content');
+                removeAllChildNodes(content);
+                for (let i = 1; i <= to; i++) {
+                    const img = document.createElement('img');
+                    img.setAttribute('width', '200px');
+                    img.setAttribute('src', `${link}${i}.jpg`);
+                    content.appendChild(img);
+                }
+            }
+        </script>
+    </body>
+</html>
