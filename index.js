@@ -1,16 +1,16 @@
-function SplitString(str) {
-    let arr = [];
-    let money = "";
-    for (let ch of str) {
-        if (!isNaN(ch) && ch !== " ") money += ch;
-        else {
-            if (money != "") arr.push(money);
-            money = "";
-        }
-    }
-    if (!isNaN(money)) arr.push(money);
-    return arr;
-}
+import { CreateElement } from './modules/feature_functions.js';
+import { buttons } from './modules/buttons.js';
 
-let salary = "1000$ - 5000$ -jvhcgdtyg $1000 12345";
-console.log(SplitString(salary));
+const listBtns = document.querySelector('.list-buttons');
+buttons.map((button) => {
+    const col = CreateElement('div', ['col', 'col-2']);
+    const btn = CreateElement('button', ['btn', 'btn-primary', 'w-100']);
+    const a = document.createElement('a');
+    a.href = button.url;
+    a.textContent = button.name;
+    a.style.textDecoration = 'none';
+    a.style.color = 'white';
+    btn.appendChild(a);
+    col.appendChild(btn);
+    listBtns.appendChild(col);
+});

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Download Image 2</title>
+    </head>
+    <body>
+        <button id="generate" onclick="GenerateImage()">Generate</button>
+        <script>
+            const url = ``;
+            const body = document.querySelector('body');
+
+            function GenerateImage() {
+                const num = 600;
+                for (let i = 1; i <= num; i++) {
+                    const n = i.toString().padStart(4, '0');
+                    const img = document.createElement('img');
+                    img.setAttribute('src', `${url}${n}.jpg`);
+                    body.appendChild(img);
+                }
+            }
+        </script>
+    </body>
+</html>
