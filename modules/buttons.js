@@ -51,4 +51,8 @@ export const buttons = [
         name: 'Download Image 2',
         url: './pages/downloadImg2/index.html',
     },
+    {
+        name: 'Graph Theory',
+        url: './pages/graph_theory',
+    },
 ];

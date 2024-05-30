@@ -1,0 +1,21 @@
+.draw-screen {
+    width: 500px;
+    height: 500px;
+    position: relative;
+}
+
+.vertex {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: absolute;
+    background-color: red;
+}
+
+.edge {
+    position: absolute;
+    border-bottom: 1px solid black;
+    width: 0;
+    transform-origin: 0 0;
+    z-index: 1;
+}
