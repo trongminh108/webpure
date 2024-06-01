@@ -5,6 +5,27 @@ import {
     CreateElementAnchor,
 } from '../../modules/feature_functions.js';
 
+function Init() {
+    const container = document.querySelector('.main-container');
+    const rowBegin = CreateElement(
+        'div',
+        'row',
+        certifications.length,
+        container
+    );
+    const row = CreateElement('div', 'row', null, container);
+    certifications.forEach((cer) => {
+        // row.appendChild(CertificationDiv(cer));
+        const col3 = CreateElement(
+            'div',
+            'col col-12 col-sm-6 col-lg-3 mb-4',
+            null,
+            row
+        );
+        col3.appendChild(CertificationCard(cer));
+    });
+}
+
 function CertificationDiv(cer) {
     const div = CreateElement('div', 'w-50 mb-4');
     const aLink = CreateElement(
@@ -33,33 +54,17 @@ function CertificationCard(cer) {
         null,
         aCard
     );
-    div.style.height = '291px';
+    // div.style.minHeight = '335px';
     const img = CreateElement('img', 'card-img-top', null, div);
     img.src = cer.image;
     const divBody = CreateElement('div', 'card-body', null, div);
     const p = CreateElement(
         'p',
-        'text-black fs-5 fw-bold',
+        'text-black fs-5 fw-bold text-truncate',
         `${cer.name} - ${cer.website}`,
         divBody
     );
     return aCard;
-}
-
-function Init() {
-    const container = document.querySelector('.main-container');
-    const rowBegin = CreateElement(
-        'div',
-        'row',
-        certifications.length,
-        container
-    );
-    const row = CreateElement('div', 'row', null, container);
-    certifications.forEach((cer) => {
-        // row.appendChild(CertificationDiv(cer));
-        const col3 = CreateElement('div', 'col col-3 mb-4', null, row);
-        col3.appendChild(CertificationCard(cer));
-    });
 }
 
 Init();

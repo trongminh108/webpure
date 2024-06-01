@@ -1,104 +1,207 @@
 const sololearn = `https://www.sololearn.com/certificates/`;
-const C = 'C';
-const CPP = 'C++';
-const C_SHARP = 'C#';
-const PYTHON = 'Python';
-const JAVA = 'Java';
-const JAVA_SCRIPT = 'JavaScript';
-const SQL = 'SQL';
-const HTML = 'HTML';
-const CSS = 'CSS';
+const codelearn = `https://codelearn.io/share/`;
+const hackerrank = `https://www.hackerrank.com/certificates/`;
+const f8 = `https://fullstack.edu.vn/cert/`;
+
+export const languages = {
+    c: 'C',
+    cpp: 'C++',
+    csharp: 'C#',
+    python: 'Python',
+    java: 'Java',
+    js: 'JavaScript',
+    sql: 'SQL',
+    html: 'HTML',
+    css: 'CSS',
+};
+export const websites = {
+    solo: 'sololearn.com',
+    hacker: 'hackerrank.com',
+    codelearn: 'codelearn.io',
+    f8: 'fullstack.edu.vn',
+};
 
 export const certifications = [
     {
         name: 'C',
-        website: 'sololearn.com',
+        website: websites['solo'],
         image: './images/sololearn.com/C.png',
         link: sololearn + 'CT-BYWYOCHH',
-        language: C,
+        language: languages['c'],
     },
     {
         name: 'C++',
-        website: 'sololearn.com',
+        website: websites['solo'],
         image: './images/sololearn.com/Cpp.png',
         link: sololearn + 'CT-IVCXSTHL',
-        language: CPP,
+        language: languages['cpp'],
     },
     {
         name: 'C#',
-        website: 'sololearn.com',
+        website: websites['solo'],
         image: './images/sololearn.com/CSharp.png',
         link: sololearn + 'CT-2YEHIYUG',
-        language: C_SHARP,
+        language: languages['csharp'],
     },
     {
         name: 'Java',
-        website: 'sololearn.com',
+        website: websites['solo'],
         image: './images/sololearn.com/Java.png',
         link: sololearn + 'CT-NZBMDYAZ',
-        language: JAVA,
+        language: languages['java'],
     },
     {
         name: 'Python Core',
-        website: 'sololearn.com',
+        website: websites['solo'],
         image: './images/sololearn.com/PythonCore.png',
         link: sololearn + 'CT-KE09J3YX',
-        language: PYTHON,
+        language: languages['python'],
     },
     {
         name: 'Intermediate Python',
-        website: 'sololearn.com',
+        website: websites['solo'],
         image: './images/sololearn.com/IntermediatePython.png',
         link: sololearn + 'CT-CIK7IXA6',
-        language: PYTHON,
+        language: languages['python'],
     },
     {
         name: 'Python for Beginners',
-        website: 'sololearn.com',
+        website: websites['solo'],
         image: './images/sololearn.com/PythonForBeginners.png',
         link: sololearn + 'CT-LTMQSTV4',
-        language: PYTHON,
+        language: languages['python'],
     },
     {
         name: 'Python Data Structures',
-        website: 'sololearn.com',
+        website: websites['solo'],
         image: './images/sololearn.com/PythonDataStructures.png',
         link: sololearn + 'CT-YCNHUDTQ',
-        language: PYTHON,
+        language: languages['python'],
     },
     {
         name: 'SQL',
-        website: 'sololearn.com',
+        website: websites['solo'],
         image: './images/sololearn.com/SQL.png',
         link: sololearn + 'CT-KPSC1LHG',
-        language: SQL,
+        language: languages['sql'],
     },
     {
         name: 'Introduction to HTML',
-        website: 'sololearn.com',
+        website: websites['solo'],
         image: './images/sololearn.com/IntroductionToHTML.png',
         link: sololearn + 'CC-CHJDEET3',
-        language: HTML,
+        language: languages['html'],
     },
     {
         name: 'Web Development',
-        website: 'sololearn.com',
+        website: websites['solo'],
         image: './images/sololearn.com/WebDevelopment.png',
         link: sololearn + 'CC-UBAEYAZ5',
-        language: [HTML, CSS, JAVA_SCRIPT],
+        language: [languages['html'], languages['css'], languages['js']],
     },
     {
         name: 'Introduction to Python',
-        website: 'sololearn.com',
+        website: websites['solo'],
         image: './images/sololearn.com/IntroductionToPython.jpg',
         link: sololearn + 'CC-VHB9U0WG',
-        language: PYTHON,
+        language: languages['python'],
     },
     {
         name: 'Introduction to JavaScript',
-        website: 'sololearn.com',
+        website: websites['solo'],
         image: './images/sololearn.com/IntroductionToJavaScript.jpg',
         link: sololearn + 'CC-2YN9R6D8',
-        language: JAVA_SCRIPT,
+        language: languages['js'],
+    },
+    {
+        name: 'Python cơ bản',
+        website: websites['codelearn'],
+        image: './images/codelearn.io/PythonBasic.png',
+        link: codelearn + '4384b782-442a-4eba-ab7c-f78570e7bf2d',
+        language: languages['python'],
+    },
+    {
+        name: 'JavaScript cơ bản',
+        website: websites['codelearn'],
+        image: './images/codelearn.io/JavaScriptCoBan.png',
+        link: codelearn + 'c63f5c15-7675-496a-9d42-05a257c8a015',
+        language: languages['js'],
+    },
+    {
+        name: 'C cho người mới bắt đầu',
+        website: websites['codelearn'],
+        image: './images/codelearn.io/CChoNguoiMoiBatDau.png',
+        link: codelearn + '98ae6c33-faaf-4feb-900a-decd4b331823',
+        language: languages['c'],
+    },
+    {
+        name: 'C# cơ bản',
+        website: websites['codelearn'],
+        image: './images/codelearn.io/CSharpCoban.png',
+        link: codelearn + '7870d93c-58cf-4c8c-b568-aeee7b479404',
+        language: languages['csharp'],
+    },
+    {
+        name: 'C++ cho người mới bắt đầu',
+        website: websites['codelearn'],
+        image: './images/codelearn.io/CPlusPlusCoBan.png',
+        link: codelearn + 'c2e80812-592a-43a8-9514-146433774b56',
+        language: languages['cpp'],
+    },
+    {
+        name: 'C++ nâng cao',
+        website: websites['codelearn'],
+        image: './images/codelearn.io/CPlusPlusNangCao.png',
+        link: codelearn + 'e84d3889-a880-4277-a098-67c8205ced05',
+        language: languages['cpp'],
+    },
+    {
+        name: 'Java cơ bản',
+        website: websites['codelearn'],
+        image: './images/codelearn.io/JavaBasic.png',
+        link: codelearn + 'c61c3612-0cf3-421e-a207-c5bcd311e1b7',
+        language: languages['cpp'],
+    },
+    {
+        name: 'Lập trình hướng đối tượng trong C++',
+        website: websites['codelearn'],
+        image: './images/codelearn.io/CPPOOP.png',
+        link: codelearn + 'c4416001-a1ab-46e0-a57b-c62cc3c8054f',
+        language: languages['cpp'],
+    },
+    {
+        name: 'Lập trình hướng đối tượng trong Java',
+        website: websites['codelearn'],
+        image: './images/codelearn.io/JavaOOP.png',
+        link: codelearn + 'e9ee6c02-46b9-4c4d-b9a9-03784efd32e9',
+        language: languages['java'],
+    },
+    {
+        name: 'Làm quen với SQL',
+        website: websites['codelearn'],
+        image: './images/codelearn.io/LamQuenVoiSQL.png',
+        link: codelearn + 'f03b938b-d556-4449-8500-ba9b5efa729b',
+        language: languages['sql'],
+    },
+    {
+        name: 'Python Basic',
+        website: websites['hackerrank'],
+        image: './images/hackerrank.com/python_basic.jpg',
+        link: hackerrank + '7a7ef313bcd4',
+        language: languages['python'],
+    },
+    {
+        name: 'Responsive Web Design',
+        website: websites['f8'],
+        image: './images/f8/Responsive_Web_Design_Certificate.png',
+        link: f8 + '9qwkj',
+        language: [languages['html'], languages['css'], languages['js']],
+    },
+    {
+        name: 'HTML & CSS',
+        website: websites['f8'],
+        image: './images/f8/HTML_&_CSS_Certificate.png',
+        link: f8 + '44l8h',
+        language: [languages['html'], languages['css']],
     },
 ];
