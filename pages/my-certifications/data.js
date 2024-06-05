@@ -16,7 +16,7 @@ export const languages = {
 };
 export const websites = {
     solo: 'sololearn.com',
-    hacker: 'hackerrank.com',
+    hackerrank: 'hackerrank.com',
     codelearn: 'codelearn.io',
     f8: 'fullstack.edu.vn',
 };
@@ -160,7 +160,7 @@ export const certifications = [
         website: websites['codelearn'],
         image: './images/codelearn.io/JavaBasic.png',
         link: codelearn + 'c61c3612-0cf3-421e-a207-c5bcd311e1b7',
-        language: languages['cpp'],
+        language: languages['java'],
     },
     {
         name: 'Lập trình hướng đối tượng trong C++',
@@ -203,5 +203,19 @@ export const certifications = [
         image: './images/f8/HTML_&_CSS_Certificate.png',
         link: f8 + '44l8h',
         language: [languages['html'], languages['css']],
+    },
+    {
+        name: 'Java Intermediate',
+        website: websites['sololearn'],
+        image: './images/sololearn.com/JavaIntermediate.png',
+        link: sololearn + 'CC-NDBZXVZK',
+        language: [languages['java']],
+    },
+    {
+        name: 'Introduce To C',
+        website: websites['sololearn'],
+        image: './images/sololearn.com/IntroduceToC.png',
+        link: sololearn + 'CC-LYAW0GN7',
+        language: [languages['c']],
     },
 ];

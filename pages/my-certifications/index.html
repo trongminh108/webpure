@@ -25,6 +25,11 @@
             //     $('#navbar-container').load('./components/navbar.html');
             // });
             import { Init } from './components/navbar/navbar.js';
+            import {
+                handleChangeWebsite,
+                handleChangeLanguage,
+                handleSearch,
+            } from './script.js';
             document.addEventListener('DOMContentLoaded', function () {
                 fetch('./components/navbar')
                     .then((response) => {
@@ -33,7 +38,11 @@
                     .then((data) => {
                         document.getElementById('navbar-container').innerHTML =
                             data;
-                        Init();
+                        Init(
+                            handleChangeWebsite,
+                            handleChangeLanguage,
+                            handleSearch
+                        );
                     })
                     .catch((error) =>
                         console.error('Error loading navbar:', error)

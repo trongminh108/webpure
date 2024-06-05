@@ -7,7 +7,7 @@ export function CreateElement(
     const res = document.createElement(tag);
     if (classes) res.classList.add(...classes.split(' '));
     if (innerText) res.innerText = innerText;
-    if (parent) parent.appendChild(res);
+    if (parent && !parent.contains(res)) parent.appendChild(res);
     return res;
 }
 
@@ -26,7 +26,12 @@ export function CreateElementAnchor(
     return res;
 }
 
-export function SelectOption(options, label = null, defaultValue = null) {
+export function SelectOption(
+    options,
+    label = null,
+    defaultValue = null,
+    parent = null
+) {
     const inputGroup = CreateElement('div', 'input-group');
     // <div class="input-group">
     //     <label class="input-group-text" for="inputGroupSelect02">
@@ -55,5 +60,25 @@ export function SelectOption(options, label = null, defaultValue = null) {
         );
         optionTag.value = option.id;
     });
+    if (parent) parent.appendChild(inputGroup);
     return inputGroup;
+}
+
+export function searchIgnoreCaseAndDiacritics(text, keyword) {
+    const normalizedText = text.toLowerCase();
+    const normalizedKeyword = keyword.toLowerCase();
+
+    const removeDiacritics = (str) => {
+        return str
+            .normalize('NFD') // Chuẩn hóa chuỗi thành Unicode (NFD)
+            .replace(/[\u0300-\u036f]/g, ''); // Loại bỏ các ký tự dấu
+    };
+
+    const normalizedTextWithoutDiacritics = removeDiacritics(normalizedText);
+    const normalizedKeywordWithoutDiacritics =
+        removeDiacritics(normalizedKeyword);
+
+    return normalizedTextWithoutDiacritics.includes(
+        normalizedKeywordWithoutDiacritics
+    );
 }
