@@ -82,3 +82,13 @@ export function searchIgnoreCaseAndDiacritics(text, keyword) {
         normalizedKeywordWithoutDiacritics
     );
 }
+
+export function getNumRanInt(min, max) {
+    min = Math.floor(min);
+    max = Math.ceil(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export function getDistancePoints(p1, p2) {
+    return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+}

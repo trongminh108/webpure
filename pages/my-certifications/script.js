@@ -77,14 +77,14 @@ export function handleChangeWebsite(event) {
     const value = event.target.value;
     filterState.website = value;
     handleChangeFilter();
-    console.log('[FILTER]: ', filterState);
+    // console.log('[FILTER]: ', filterState);
 }
 
 export function handleChangeLanguage(event) {
     const value = event.target.value;
     filterState.language = value;
     handleChangeFilter();
-    console.log('[FILTER]: ', filterState);
+    // console.log('[FILTER]: ', filterState);
 }
 
 export function handleSearch(event) {

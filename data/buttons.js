@@ -1,7 +1,7 @@
 export const buttons = [
     {
         name: 'Social Icons',
-        url: './pages/socialIcon',
+        url: './pages/social-icon',
     },
     {
         name: 'Search bar',
@@ -9,19 +9,19 @@ export const buttons = [
     },
     {
         name: 'Toggle button',
-        url: './pages/toggleButton',
+        url: './pages/toggle-button',
     },
     {
         name: 'Preview Image',
-        url: './pages/previewImage',
+        url: './pages/preview-image',
     },
     {
         name: 'Hamburger Menu',
-        url: './pages/hamburgerMenu',
+        url: './pages/hamburger-menu',
     },
     {
         name: 'Flip Effect',
-        url: './pages/flipEffect',
+        url: './pages/flip-effect',
     },
     {
         name: 'Loader',
@@ -29,15 +29,15 @@ export const buttons = [
     },
     {
         name: 'Foldable Card',
-        url: './pages/foldAbleCard',
+        url: './pages/fold-able-card',
     },
     {
         name: 'Drag And Drop',
-        url: './pages/dragAndDrop',
+        url: './pages/drag-and-drop',
     },
     {
         name: 'Modal',
-        url: './pages/modalEffect',
+        url: './pages/modal-effect',
     },
     {
         name: 'Tính DTBTL',
@@ -52,15 +52,27 @@ export const buttons = [
         url: './pages/test',
     },
     {
-        name: 'Download Image 2',
-        url: './pages/downloadImg2/index.html',
+        name: 'DownIMG 2',
+        url: './pages/download-img-2',
     },
     {
         name: 'Graph Theory',
-        url: './pages/graph_theory',
+        url: './pages/graph-theory',
     },
     {
         name: 'Certifications',
         url: './pages/my-certifications',
+    },
+    {
+        name: 'My Profile',
+        url: './pages/my-profile',
+    },
+    {
+        name: 'Graph Theory Canvas',
+        url: './pages/graph-theory-canvas',
+    },
+    {
+        name: 'Balls',
+        url: './pages/balls',
     },
 ];
