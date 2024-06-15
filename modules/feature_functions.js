@@ -90,5 +90,20 @@ export function getNumRanInt(min, max) {
 }
 
 export function getDistancePoints(p1, p2) {
-    return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+    const dx = p1.x - p2.x;
+    const dy = p1.y - p2.y;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+export function calculateAngle(a, b, c) {
+    // Calculate the cosine of angle C using the law of cosines
+    const cosC = (a * a + b * b - c * c) / (2 * a * b);
+
+    // Calculate the angle in radians
+    const angleCInRadians = Math.acos(cosC);
+
+    // Convert the angle from radians to degrees
+    const angleCInDegrees = angleCInRadians * (180 / Math.PI);
+
+    return 90 - angleCInDegrees;
 }

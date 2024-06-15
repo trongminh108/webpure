@@ -1,4 +1,5 @@
 import { FOREST } from '../../constants/palette.js';
+import { getNumRanInt } from '../../modules/feature_functions.js';
 import { CIRCLE } from './circle.js';
 import { MOVE, VERTEX, EDGE, CLEAR } from './constants.js';
 
@@ -12,9 +13,11 @@ const height = 500;
 canvas.width = width;
 canvas.height = height;
 canvas.style.border = '5px solid red';
+canvas.style.backgroundColor = 'black';
 
 const vertexes = [];
 const RADIUS = 10;
+const SPEED = 2;
 
 //navbar
 const navbar = document.querySelector('#navbar');
@@ -130,8 +133,9 @@ function handleClickClearButton() {
 function CreateVertex(x, y) {
     const pos = { x: x, y: y };
     let isInVertex = false;
+    const radius = getNumRanInt(15, 25);
     for (const vertex of vertexes) {
-        if (vertex.isOverlapping(pos, RADIUS)) {
+        if (vertex.isOverlapping(pos, radius)) {
             console.log('[VERTEX]: ', vertex);
             isInVertex = true;
         }
@@ -141,9 +145,9 @@ function CreateVertex(x, y) {
             context,
             x,
             y,
-            RADIUS,
+            radius,
             vertexes.length + 1,
-            1
+            SPEED
         );
         vertex.draw();
         vertexes.push(vertex);

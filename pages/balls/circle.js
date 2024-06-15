@@ -45,7 +45,7 @@ export class CIRCLE {
         this.text = text;
         this.dx = speed * getNumRanInt(-5, 5) == 0 || speed;
         this.dy = speed * getNumRanInt(-5, 5) || speed;
-        this.color = colors[getNumRanInt(0, 10)];
+        this.color = colors[getNumRanInt(0, 30)];
     }
 
     draw() {
@@ -91,7 +91,10 @@ export class CIRCLE {
         const dx = this.x - other.x;
         const dy = this.y - other.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-
-        return distance + 1 <= this.radius + other.radius;
+        if (distance + 1 <= this.radius + other.radius) {
+            this.color = colors[getNumRanInt(0, 30)];
+            return true;
+        }
+        return false;
     }
 }
