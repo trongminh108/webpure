@@ -218,4 +218,11 @@ export const certifications = [
         link: sololearn + 'CC-LYAW0GN7',
         language: [languages['c']],
     },
+    {
+        name: 'Intermediate Python',
+        website: websites['sololearn'],
+        image: './images/sololearn.com/PythonIntermediate.jpg',
+        link: sololearn + 'CT-CIK7IXA6',
+        language: [languages['python']],
+    },
 ];

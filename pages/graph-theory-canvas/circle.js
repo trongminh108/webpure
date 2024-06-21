@@ -37,14 +37,12 @@ const colors = [
 ];
 
 export class CIRCLE {
-    constructor(context, x, y, r, text = '', speed = 0) {
+    constructor(context, x, y, r, text = '') {
         this.context = context;
         this.x = x;
         this.y = y;
         this.radius = r;
         this.text = text;
-        this.dx = speed * getNumRanInt(-5, 5) == 0 || speed;
-        this.dy = speed * getNumRanInt(-5, 5) || speed;
         this.color = colors[getNumRanInt(0, 10)];
     }
 
@@ -57,10 +55,19 @@ export class CIRCLE {
 
         //draw text
         this.context.fillStyle = 'black';
-        this.context.font = '10px black';
+        this.context.font = '12px black';
         this.context.textAlign = 'center';
         this.context.textBaseline = 'middle';
         this.context.fillText(this.text, this.x, this.y);
+    }
+
+    clear() {
+        this.context.clearRect(
+            this.x - this.radius - 1,
+            this.y - this.radius - 1,
+            this.radius * 2 + 2,
+            this.radius * 2 + 2
+        );
     }
 
     update(width, height) {
@@ -80,8 +87,20 @@ export class CIRCLE {
                 pos.y <= this.y + this.radius
             ) {
                 const p = { x: this.x, y: this.y };
-                if (getDistancePoints(p, pos) < radius + this.radius)
+                if (getDistancePoints(p, pos) <= radius + this.radius)
                     return true;
+            }
+        }
+        return false;
+    }
+
+    isInCircle(pos) {
+        if (pos.x >= this.x - this.radius && pos.x <= this.x + this.radius) {
+            if (
+                pos.y >= this.y - this.radius &&
+                pos.y <= this.y + this.radius
+            ) {
+                return true;
             }
         }
         return false;

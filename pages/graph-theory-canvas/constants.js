@@ -1,4 +1,9 @@
 export const MOVE = 'move';
 export const VERTEX = 'vertex';
-export const EDGE = 'edge';
+export const EDGE_BUTTON = 'edge';
+export const UNDO_BUTTON = 'undo';
 export const CLEAR = 'clear';
+export const DIRECTED_GRAPH = 'directed';
+export const UNDIRECTED_GRAPH = 'undirected';
+export const WEIGHTED_GRAPH = 'weighted';
+export const UNWEIGHTED_GRAPH = 'unweighted';

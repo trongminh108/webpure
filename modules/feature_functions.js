@@ -33,17 +33,6 @@ export function SelectOption(
     parent = null
 ) {
     const inputGroup = CreateElement('div', 'input-group');
-    // <div class="input-group">
-    //     <label class="input-group-text" for="inputGroupSelect02">
-    //         Website
-    //     </label>
-    //     <select class="form-select" id="inputGroupSelect02">
-    //         <option selected>Choose...</option>
-    //         <option value="1">One</option>
-    //         <option value="2">Two</option>
-    //         <option value="3">Three</option>
-    //     </select>
-    // </div>
     const labelTag = CreateElement(
         'label',
         'input-group-text',
