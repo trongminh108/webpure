@@ -225,4 +225,11 @@ export const certifications = [
         link: sololearn + 'CT-CIK7IXA6',
         language: [languages['python']],
     },
+    {
+        name: 'Introduction To SQL',
+        website: websites['sololearn'],
+        image: './images/sololearn.com/IntroductionToSQL.png',
+        link: sololearn + 'CC-VSGSI7BA',
+        language: [languages['sql']],
+    },
 ];
