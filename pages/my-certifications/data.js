@@ -137,7 +137,7 @@ export const certifications = [
     {
         name: 'C# cơ bản',
         website: websites['codelearn'],
-        image: './images/codelearn.io/CSharpCoban.png',
+        image: './images/codelearn.io/CSharpCoBan.png',
         link: codelearn + '7870d93c-58cf-4c8c-b568-aeee7b479404',
         language: languages['csharp'],
     },

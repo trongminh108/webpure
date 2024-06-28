@@ -1,4 +1,4 @@
-import { FOREST } from '../../constants/palette.js';
+import { BACKGROUND, FOREST, PRIMARY } from '../../constants/palette.js';
 import { CIRCLE } from './circle.js';
 import { EDGE } from './edge.js';
 import {
@@ -9,11 +9,15 @@ import {
     UNDIRECTED_GRAPH,
     UNWEIGHTED_GRAPH,
     DIRECTED_GRAPH,
+    WEIGHTED_GRAPH,
 } from './constants.js';
 import {
     SelectOption,
     getDistancePoints,
 } from '../../modules/feature_functions.js';
+import { CHAPTER1 } from './chapter/chapter1.js';
+import { CHAPTER2 } from './chapter/chapter2.js';
+import { CHAPTER3 } from './chapter/chapter3.js';
 class GRAPH_THEORY {
     constructor(width, height) {
         this.canvas = document.querySelector('#canvas');
@@ -35,18 +39,27 @@ class GRAPH_THEORY {
         };
 
         //navbar
-        this.navbar = document.querySelector('#navbar');
-        this.navbar.style.backgroundColor = FOREST['headerFooter'];
-        this.buttons = this.navbar.querySelectorAll('.btn');
-        this.buttons.forEach((btn) => {
-            btn.querySelector('i').addEventListener('click', (e) => {
-                e.stopPropagation();
-                this.handleBtnClick(btn);
+        {
+            this.navbar = document.querySelector('#navbar');
+            this.navbar.style.backgroundColor = FOREST[PRIMARY];
+            this.buttons = this.navbar.querySelectorAll('.btn');
+            this.buttons.forEach((btn) => {
+                btn.querySelector('i').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.handleBtnClick(btn);
+                });
+                btn.addEventListener('click', (e) => this.handleBtnClick(btn));
             });
-            btn.addEventListener('click', (e) => this.handleBtnClick(btn));
-        });
-        this.currentBtn = this.buttons[0];
-        this.ToggleButton(this.currentBtn);
+            this.currentBtn = this.buttons[0];
+            this.ToggleButton(this.currentBtn);
+
+            //function buttons
+            this.resultContext = document.querySelector('#result-context');
+            this.currentChapter = '1';
+            new CHAPTER1(this.resultContext, this.graph, this.type_graph);
+        }
+
+        //drawing canvas
         this.isDragging = false;
         this.currentVertex = null;
         this.edge = {};
@@ -107,6 +120,40 @@ class GRAPH_THEORY {
         }
     }
 
+    handleChangeSelectWeighted(e) {
+        const type = e.target.value;
+        if (this.type_graph.weighted != type) {
+            this.type_graph.weighted = type;
+            this.UpdateGraph();
+        }
+    }
+
+    handleChangeSelectChapter(e) {
+        const value = e.target.value;
+        if (value != this.currentChapter) {
+            this.currentChapter = value;
+            let chapter;
+            if (value === '1')
+                chapter = new CHAPTER1(
+                    this.resultContext,
+                    this.graph,
+                    this.type_graph
+                );
+            else if (value === '2')
+                chapter = new CHAPTER2(
+                    this.resultContext,
+                    this.graph,
+                    this.type_graph
+                );
+            else if (value === '3')
+                chapter = new CHAPTER3(
+                    this.resultContext,
+                    this.graph,
+                    this.type_graph
+                );
+        }
+    }
+
     CreateVertex(x, y) {
         const pos = { x: x, y: y };
         let isInVertex = false;
@@ -163,6 +210,13 @@ class GRAPH_THEORY {
                     if (this.type_graph.directed === UNDIRECTED_GRAPH) e.draw();
                     else if (this.type_graph.directed === DIRECTED_GRAPH)
                         e.draw_arrow(this.vertexes[0].radius);
+                    if (this.type_graph.weighted === WEIGHTED_GRAPH) {
+                        const pw = {
+                            x: (vi.x + vj.x) / 2,
+                            y: (vi.y + vj.y) / 2,
+                        };
+                        this.context.fillText(col.toString(), pw.x, pw.y);
+                    }
                 }
             });
         });
@@ -224,15 +278,20 @@ class GRAPH_THEORY {
                 this.vertexes[this.currentVertex].clear();
                 this.vertexes[this.currentVertex].x = pos.x;
                 this.vertexes[this.currentVertex].y = pos.y;
-                UpdateGraph();
+                this.UpdateGraph();
             }
-
-            if (this.currentBtn.id === VERTEX) {
+            if (this.currentBtn.id === MOVE) {
                 const isInVer = this.vertexes.some((ver) =>
                     ver.isInCircle(pos)
                 );
                 if (isInVer) this.canvas.style.cursor = 'pointer';
                 else this.canvas.style.cursor = '';
+            } else if (this.currentBtn.id === VERTEX) {
+                const isInVer = this.vertexes.some((ver) =>
+                    ver.isInCircle(pos)
+                );
+                if (isInVer) this.canvas.style.cursor = '';
+                else this.canvas.style.cursor = 'pointer';
             } else if (
                 this.currentBtn.id === EDGE_BUTTON &&
                 Object.keys(this.edge).length >= 1
@@ -262,22 +321,40 @@ class GRAPH_THEORY {
                 });
                 if (this.edge.p1.index != min.index)
                     this.graph[this.edge.p1.index][min.index] = 1;
-                console.log('[GRAPH]: ', this.graph);
+                // console.log('[GRAPH]: ', this.graph);
                 this.edge = {};
                 this.UpdateGraph();
             }
+        });
+
+        this.canvas.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            const rect = this.canvas.getBoundingClientRect();
+            const x = touch.clientX - rect.left;
+            const y = touch.clientY - rect.top;
+            console.log('[EVENT]: ', x, y);
         });
 
         const selectDirected = this.navbar.querySelector('#selectDirected');
         selectDirected.addEventListener('change', (e) =>
             this.handleChangeSelectDirected(e)
         );
+
+        // selectWeighted
+        const selectWeighted = this.navbar.querySelector('#selectWeighted');
+        selectWeighted.addEventListener('change', (e) => {
+            this.handleChangeSelectWeighted(e);
+        });
+
+        const selectChapter = this.navbar.querySelector('#selectChapter');
+        selectChapter.addEventListener('change', (e) =>
+            this.handleChangeSelectChapter(e)
+        );
     }
 }
 
 const canvasContainer = document.querySelector('#canvas-container');
-const width =
-    canvasContainer.offsetWidth >= 500 ? 500 : canvasContainer.offsetWidth;
-console.log(width);
+const offsetW = canvasContainer.offsetWidth - 35;
+const width = offsetW >= 500 ? 500 : offsetW;
 const graphTheory = new GRAPH_THEORY(width, width);
 graphTheory.Init();

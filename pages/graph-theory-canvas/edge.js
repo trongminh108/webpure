@@ -30,12 +30,12 @@ export class EDGE {
 
         //draw arrow
         const p3 = { x: this.p1.x, y: this.p2.y };
-        const a = getDistancePoints(this.p1, this.p2);
-        const b = getDistancePoints(this.p1, p3);
-        const c = getDistancePoints(this.p2, p3);
+        const a = getDistancePoints(this.p2, p3);
+        const b = getDistancePoints(this.p1, this.p2);
+        const c = getDistancePoints(this.p1, p3);
 
-        const angleA = calculateAngle(a, b, c);
-        let angleInRadians = (angleA * Math.PI) / 180;
+        const angleC = calculateAngle(a, b, c);
+        let angleInRadians = (angleC * Math.PI) / 180;
         let cosAngle = Math.cos(angleInRadians);
         let sinAngle = Math.sin(angleInRadians);
 
@@ -45,7 +45,13 @@ export class EDGE {
         ny = this.p2.y < this.p1.y ? this.p2.y + sinAngle * radius : ny;
         nx = this.p2.x > this.p1.x ? this.p2.x - cosAngle * radius : nx;
 
-        // console.log('[ANGLE]: ' + angleA + ', ' + Math.sin(angleA));
+        if (isNaN(angleC)) {
+            nx = this.p2.x;
+            ny =
+                this.p2.y > this.p1.y ? this.p2.y - radius : this.p2.y + radius;
+        }
+
+        // console.log('[ANGLE]: ' + angleC + ', ' + Math.sin(angleC));
         this.context.moveTo(nx, ny);
         this.context.lineTo(
             nx - headlen * Math.cos(angle - Math.PI / 6),
