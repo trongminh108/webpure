@@ -124,6 +124,8 @@
                     .then((data) => {
                         document.querySelector('#footer').innerHTML = data;
                         InitFooter();
+                        const logo = document.querySelector('#logo');
+                        logo.src = './assets/logo/tgex.png';
                     })
                     .catch((rej) => console.log('[FOOTER]: ', rej));
             }
