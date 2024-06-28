@@ -1,9 +1,9 @@
-import { FOREST } from '../../constants/palette.js';
+import { BACKGROUND, FOREST, SECONDARY } from '../../constants/palette.js';
 import { MY_INFO } from '../../data/my-info.js';
 
 export function Init() {
     const container = document.querySelector('#footer-container');
-    container.style.backgroundColor = FOREST['background'];
+    container.style.backgroundColor = FOREST[BACKGROUND];
 
     //Mail and Phone
     const mail = container.querySelector('#f-mail');
