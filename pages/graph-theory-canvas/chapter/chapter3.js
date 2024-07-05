@@ -1,4 +1,8 @@
-import { CreateElement } from '../../../modules/feature_functions.js';
+import {
+    CreateElement,
+    ShowToastify,
+} from '../../../modules/feature_functions.js';
+import { MESS_DRAW_GRAPH_FIRST } from '../constants.js';
 import {
     BREADTH_FIRST_SEARCH,
     DEPTH_FIRST_SEARCH,
@@ -31,5 +35,25 @@ const LIST_BUTTONS = [
 export class CHAPTER3 extends CHAPTER {
     constructor(context, graph, type) {
         super(context, graph, type, LIST_BUTTONS);
+    }
+
+    handleClickButtons(event) {
+        const id = event.target.id;
+        if (this.graph.length > 0) {
+            switch (id) {
+                case SPANNING_TREE_DFS:
+                    break;
+                case SPANNING_TREE_BFS:
+                    break;
+                case MIN_SPANNING_TREE_KRUSKAL:
+                    break;
+
+                case MIN_SPANNING_TREE_PRIM:
+                    break;
+
+                default:
+                    break;
+            }
+        } else ShowToastify(MESS_DRAW_GRAPH_FIRST);
     }
 }

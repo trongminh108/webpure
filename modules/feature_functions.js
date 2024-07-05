@@ -69,6 +69,15 @@ export function getDistancePoints(p1, p2) {
 
 /**
  *
+ * @param {number} degree
+ * @returns {number} radian
+ */
+export function ConvertToRadian(degree) {
+    return (degree * Math.PI) / 180;
+}
+
+/**
+ *
  * @param {number} a a edge
  * @param {number} b b edge
  * @param {number} c c edge
@@ -152,7 +161,7 @@ export function searchIgnoreCaseAndDiacritics(text, keyword) {
 export function ShowToastify(message, status = 'info') {
     Toastify({
         text: message,
-        duration: 100000,
+        duration: 2000,
         destination: 'https://github.com/apvarun/toastify-js',
         newWindow: true,
         close: true,
@@ -163,4 +172,52 @@ export function ShowToastify(message, status = 'info') {
 
         onClick: function () {}, // Callback after click
     }).showToast();
+}
+
+//==================== FILES =====================================
+// Function to download data to a file
+export function ExportFile(data, filename, type) {
+    var file = new Blob([data], { type: type });
+    if (window.navigator.msSaveOrOpenBlob)
+        // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else {
+        // Others
+        var a = document.createElement('a'),
+            url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function () {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }, 0);
+    }
+}
+
+export function ImportFile() {
+    return new Promise((resolve, reject) => {
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const fileContent = e.target.result;
+                    resolve(fileContent); // Resolve the promise with file content
+                };
+
+                reader.onerror = (error) => {
+                    reject(error); // Reject the promise on error
+                };
+
+                reader.readAsText(file); // Read file as text
+            }
+        });
+
+        fileInput.click();
+    });
 }

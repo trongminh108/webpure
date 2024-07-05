@@ -2,7 +2,7 @@ import {
     CreateElement,
     ShowToastify,
 } from '../../../modules/feature_functions.js';
-import { UNDIRECTED_GRAPH } from '../constants.js';
+import { UNDIRECTED_GRAPH, WEIGHTED_GRAPH } from '../constants.js';
 import { ADJACENCY_LIST, ADJACENCY_MATRIX, EDGES_LIST } from './buttons.js';
 import { CHAPTER } from './chapter.js';
 
@@ -21,18 +21,6 @@ const LIST_BUTTONS = [
     },
 ];
 
-{
-    /* <button class="col btn btn-secondary">
-    Ma trận kề
-</button>
-<button class="col btn btn-secondary">
-    Danh sách cạnh - cung
-</button>
-<button class="col btn btn-secondary">
-    Danh sách kề
-</button> */
-}
-
 export class CHAPTER1 extends CHAPTER {
     constructor(context, graph, type) {
         super(context, graph, type, LIST_BUTTONS);
@@ -40,33 +28,21 @@ export class CHAPTER1 extends CHAPTER {
 
     handleClickButtons(event) {
         const id = event.target.id;
-        switch (id) {
-            case ADJACENCY_MATRIX:
-                this.handleClickAdjacencyMatrix();
-                break;
-            case EDGES_LIST:
-                this.handleClickEdgesList();
-                break;
-            case ADJACENCY_LIST:
-                this.handleClickAdjacencyList();
-                break;
-            default:
-                break;
-        }
-    }
-
-    CreateMatrixUnDirectedGraph() {
-        const n = this.graph.length;
-        const res = Array.from({ length: n }, () => new Array(n).fill(0));
-        this.graph.forEach((row, i) => {
-            row.forEach((col, j) => {
-                if (col) {
-                    res[i][j] = col;
-                    res[j][i] = col;
-                }
-            });
-        });
-        return res;
+        if (this.graph.length > 0)
+            switch (id) {
+                case ADJACENCY_MATRIX:
+                    this.handleClickAdjacencyMatrix();
+                    break;
+                case EDGES_LIST:
+                    this.handleClickEdgesList();
+                    break;
+                case ADJACENCY_LIST:
+                    this.handleClickAdjacencyList();
+                    break;
+                default:
+                    break;
+            }
+        else ShowToastify('Vui lòng vẽ đồ thị trước!');
     }
 
     CreateTable() {
@@ -101,7 +77,10 @@ export class CHAPTER1 extends CHAPTER {
         newGraph.forEach((row) => {
             const tr = CreateElement('tr');
             table.appendChild(tr);
-            row.forEach((col) => CreateElement('td', null, col.toString(), tr));
+            row.forEach((col) => {
+                let weighted = this.GetWeighted(col);
+                CreateElement('td', null, weighted, tr);
+            });
         });
         this.UpdateResult(table);
     }
@@ -111,6 +90,8 @@ export class CHAPTER1 extends CHAPTER {
         const tr = CreateElement('tr', null, null, table);
         CreateElement('th', null, 'Đầu', tr);
         CreateElement('th', null, 'Cuối', tr);
+        if (this.type.weighted === WEIGHTED_GRAPH)
+            CreateElement('th', null, 'Trọng số', tr);
         let newGraph = this.graph;
         const n = this.graph.length;
         if (this.type.directed === UNDIRECTED_GRAPH)
@@ -119,13 +100,19 @@ export class CHAPTER1 extends CHAPTER {
             if (this.type.directed === UNDIRECTED_GRAPH) {
                 for (let j = i; j < n; j++)
                     if (newGraph[i][j]) {
-                        const data = [i + 1, j + 1];
+                        const data =
+                            this.type.weighted == WEIGHTED_GRAPH
+                                ? [i + 1, j + 1, newGraph[i][j]]
+                                : [i + 1, j + 1];
                         this.AddTableRow(data, table);
                     }
             } else
                 row.forEach((col, j) => {
                     if (col) {
-                        const data = [i + 1, j + 1];
+                        const data =
+                            this.type.weighted == WEIGHTED_GRAPH
+                                ? [i + 1, j + 1, newGraph[i][j]]
+                                : [i + 1, j + 1];
                         this.AddTableRow(data, table);
                     }
                 });

@@ -113,4 +113,8 @@ export class CIRCLE {
 
         return distance + 1 <= this.radius + other.radius;
     }
+
+    toString() {
+        return `${this.x}, ${this.y}, ${this.radius}, ${this.text}`;
+    }
 }

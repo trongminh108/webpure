@@ -4,7 +4,7 @@ export const ADJACENCY_LIST = 'AdjacencyList';
 export const EDGES_LIST = 'EdgesList';
 
 //chapter 2
-export const DEPTH_FIRST_SEARCH = 'DeptFirstSearch';
+export const DEPTH_FIRST_SEARCH = 'DepthFirstSearch';
 export const BREADTH_FIRST_SEARCH = 'BreadthFirstSearch';
 
 //chapter 3
