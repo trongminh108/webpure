@@ -213,7 +213,8 @@ class GRAPH_THEORY {
                 chapter = new CHAPTER3(
                     this.resultContext,
                     this.graph,
-                    this.type_graph
+                    this.type_graph,
+                    this.vertexes
                 );
         }
     }
@@ -290,7 +291,7 @@ class GRAPH_THEORY {
         }
 
         //draw vertex
-        this.vertexes.forEach((ver, index) => {
+        this.vertexes.forEach((ver) => {
             ver.draw();
         });
     }
@@ -339,8 +340,7 @@ class GRAPH_THEORY {
                         p1,
                         p2,
                         this.type_graph,
-                        col,
-                        this.RADIUS
+                        col
                     );
                     this.edges.push(edge);
                 }

@@ -37,13 +37,13 @@ const colors = [
 ];
 
 export class CIRCLE {
-    constructor(context, x, y, r, text = '') {
+    constructor(context, x, y, r, text = '', color = null) {
         this.context = context;
         this.x = x;
         this.y = y;
         this.radius = r;
         this.text = text;
-        this.color = colors[getNumRanInt(0, 10)];
+        this.color = color ? color : colors[getNumRanInt(0, 10)];
     }
 
     draw() {
@@ -116,5 +116,16 @@ export class CIRCLE {
 
     toString() {
         return `${this.x}, ${this.y}, ${this.radius}, ${this.text}`;
+    }
+
+    static deepCopy(circle) {
+        return new CIRCLE(
+            circle.context,
+            circle.x,
+            circle.y,
+            circle.radius,
+            circle.text,
+            circle.color
+        );
     }
 }

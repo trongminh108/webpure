@@ -89,12 +89,7 @@ export class CHAPTER2 extends CHAPTER {
 
     CreateInputStartVertex(type) {
         const div = CreateElement('div', 'input-group my-3');
-        const span = CreateElement(
-            'span',
-            'input-group-text',
-            'Đỉnh bắt đầu: ',
-            div
-        );
+        CreateElement('span', 'input-group-text', 'Đỉnh bắt đầu: ', div);
         const input = CreateElement('input', 'form-control', null, div);
         input.placeholder = 'ex: 1, 2, 3...';
         input.type = 'number';

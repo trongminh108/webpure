@@ -17,6 +17,10 @@ export class EDGE {
         this.update_head_arrow();
     }
 
+    static get RADIUS() {
+        return 15;
+    }
+
     draw(radius = 0) {
         if (this.type.directed === UNDIRECTED_GRAPH) {
             this.draw_line();

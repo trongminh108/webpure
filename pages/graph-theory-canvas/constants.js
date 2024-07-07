@@ -15,3 +15,4 @@ export const BACKSPACE = 'Backspace';
 export const ENTER = 'Enter';
 
 export const MESS_DRAW_GRAPH_FIRST = 'Vui lòng vẽ đồ thị trước!';
+export const CONCLUDE_TOTAL_WEIGHTED = `. Tổng trọng số của cây khung W(G):`;
