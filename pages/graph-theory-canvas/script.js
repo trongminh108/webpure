@@ -26,6 +26,8 @@ import {
 import { CHAPTER1 } from './chapter/chapter1.js';
 import { CHAPTER2 } from './chapter/chapter2.js';
 import { CHAPTER3 } from './chapter/chapter3.js';
+import { CHAPTER5 } from './chapter/chapter5.js';
+import { CHAPTER4 } from './chapter/chapter4.js';
 class GRAPH_THEORY {
     constructor(width, height) {
         this.canvas = document.querySelector('#canvas');
@@ -211,6 +213,19 @@ class GRAPH_THEORY {
                 );
             else if (value === '3')
                 chapter = new CHAPTER3(
+                    this.resultContext,
+                    this.graph,
+                    this.type_graph,
+                    this.vertexes
+                );
+            else if (value === '4')
+                chapter = new CHAPTER4(
+                    this.resultContext,
+                    this.graph,
+                    this.type_graph
+                );
+            else if (value === '5')
+                chapter = new CHAPTER5(
                     this.resultContext,
                     this.graph,
                     this.type_graph,

@@ -1,0 +1,19 @@
+#first-button {
+    width: 50%;
+    background-color: cyan;
+    color: #00b3b3;
+    font-weight: bold;
+    border-radius: 30px;
+    border: none;
+    /* border-bottom: 2px solid black; */
+    box-shadow: 0 2px;
+    /* transition: transform 0.3s ease, box-shadow 0.3s; */
+    position: relative;
+
+    /* This applies the effect on click */
+    &:active {
+        transform: translateY(2px);
+        /* border-bottom: 1px solid black; */
+        box-shadow: inherit;
+    }
+}

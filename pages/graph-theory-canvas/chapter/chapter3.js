@@ -5,6 +5,7 @@ import {
 import { CIRCLE } from '../circle.js';
 import {
     CONCLUDE_TOTAL_WEIGHTED,
+    ENTER,
     MESS_DRAW_GRAPH_FIRST,
     UNDIRECTED_GRAPH,
 } from '../constants.js';
@@ -13,6 +14,9 @@ import { willCreateCycle } from '../modules/union_find.js';
 import {
     BREADTH_FIRST_SEARCH,
     DEPTH_FIRST_SEARCH,
+    DIJKSTRA,
+    FLOYD,
+    FORD_BELLMAN,
     MIN_SPANNING_TREE_KRUSKAL,
     MIN_SPANNING_TREE_PRIM,
     SPANNING_TREE_BFS,
@@ -158,6 +162,57 @@ export class CHAPTER3 extends CHAPTER {
         return { canvas: canvasResult, context: contextResult };
     }
 
+    CreateInputVertex(type) {
+        const inputContainer = CreateElement('form', 'd-flex gap-3');
+        const group1 = CreateElement(
+            'group1',
+            'input-group my-3',
+            null,
+            inputContainer
+        );
+        CreateElement('span', 'input-group-text', 'Đỉnh bắt đầu: ', group1);
+        const inputStart = CreateElement('input', 'form-control', null, group1);
+        inputStart.placeholder = 'ex: 1, 2, 3...';
+        inputStart.type = 'number';
+        inputStart.id = 'start';
+
+        inputStart.addEventListener('keydown', (e) => {
+            const key = e.key;
+            if (key === ENTER) {
+                e.preventDefault();
+                inputContainer.dispatchEvent(new Event('submit'));
+            }
+        });
+
+        inputContainer.addEventListener('submit', (e) => {
+            e.preventDefault();
+            try {
+                const start = parseInt(inputStart.value);
+                const n = this.graph.length;
+
+                if (isNaN(start)) throw Error('Đỉnh đầu không thể trống!');
+                if (start <= 0) throw new Error('Đỉnh bắt đầu phải > 0');
+                if (start <= n) {
+                    this.UpdateResult(inputContainer);
+                    switch (type) {
+                        case DEPTH_FIRST_SEARCH:
+                            this.ShowResult(this.SolveDFS(start - 1));
+                            break;
+                        case BREADTH_FIRST_SEARCH:
+                            this.ShowResult(this.SolveBFS(start - 1));
+                            break;
+                    }
+                } else
+                    throw new Error(
+                        `Đỉnh bắt đầu phải <= ${this.graph.length}`
+                    );
+            } catch (error) {
+                ShowToastify(error.message);
+            }
+        });
+        this.UpdateResult(inputContainer);
+    }
+
     ShowResult(result) {
         const { edges, node } = result;
         const newVertexes = [];
@@ -183,7 +238,7 @@ export class CHAPTER3 extends CHAPTER {
             ).draw(EDGE.RADIUS);
         });
 
-        this.UpdateResult(node);
+        this.result.appendChild(node);
         newVertexes.forEach((v) => {
             v.context = context;
             v.draw();
@@ -244,13 +299,11 @@ export class CHAPTER3 extends CHAPTER {
     }
 
     handleClickSpanningTreeDFS() {
-        const result = this.SolveDFS(0);
-        this.ShowResult(result);
+        this.CreateInputVertex(DEPTH_FIRST_SEARCH);
     }
 
     handleClickSpanningTreeBFS() {
-        const result = this.SolveBFS(0);
-        this.ShowResult(result);
+        this.CreateInputVertex(BREADTH_FIRST_SEARCH);
     }
 
     handleClickMinSpanningTreeKruskal() {
@@ -277,7 +330,7 @@ export class CHAPTER3 extends CHAPTER {
             ];
             return item;
         });
-        console.log(edgesList);
+        // console.log(edgesList);
 
         const res = [];
         edgesList.forEach((item) => {
