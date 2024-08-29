@@ -296,4 +296,12 @@ export const certifications = [
         language: [languages['csharp']],
         issued: '13/08/2024',
     },
+    {
+        name: 'C Intermediate',
+        website: websites['solo'],
+        image: './images/sololearn.com/CIntermediate.png',
+        link: sololearn + 'CC-PJ2UEENU',
+        language: [languages['c']],
+        issued: '29/08/2024',
+    },
 ];
