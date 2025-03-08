@@ -20,15 +20,15 @@ const lyricsData = [
     { start: 96.36, text: 'Em đừng xinh như thế nữa' },
     { start: 98.32, text: 'Loạn nhịp cả tim lên rồi' },
     { start: 99.88, text: 'Đầu này toàn là em mà thôi' },
-    { start: 101.48, text: 'yeh eh y-yeh eh y-yeh (uh)' },
+    { start: 101.48, text: 'yeh eh y-yeh eh y-yeh' },
     { start: 104.48, text: 'Nỗi nhớ em cầu kỳ' },
     { start: 105.8, text: 'nên chẳng biết lý do là gì' },
     { start: 107.8, text: 'Hao tốn hơi nhiều GB' },
-    { start: 109.56, text: 'nên cần dùng thêm USB' },
+    { start: 109.56, text: 'Nên cần dùng thêm USB' },
     { start: 111.8, text: 'Nỗi nhớ em cầu kỳ' },
-    { start: 113.28, text: 'nên chẳng biết lý do là gì' },
+    { start: 113.28, text: 'Nên chẳng biết lý do là gì' },
     { start: 115.48, text: 'Hao tốn hơi nhiều GB' },
-    { start: 117.0, text: 'nên cần D O M I C' },
+    { start: 117.0, text: 'Nên cần D O M I C' },
     { start: 119.68, text: 'Tràn ngập bộ nhớ nhớ nhớ nhớ em' },
     { start: 123.12, text: 'Cho anh cảm giác không sao quên được' },
     { start: 126.68, text: 'Tràn ngập bộ nhớ nhớ nhớ nhớ em' },
@@ -141,10 +141,12 @@ function createWindow(title, content) {
             if (component) {
                 component.style.transform = 'scale(0)';
                 component.style.transition = 'transform 0.3s ease-out';
+
                 document.body.appendChild(component);
 
-                // Sử dụng requestAnimationFrame để đảm bảo hiệu ứng hoạt động
+                // Buộc trình duyệt nhận diện thay đổi trước khi áp dụng transform
                 requestAnimationFrame(() => {
+                    component.getBoundingClientRect(); // Kích hoạt reflow để trình duyệt cập nhật style
                     component.style.transform = 'scale(1)';
                 });
             }
