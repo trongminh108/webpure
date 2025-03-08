@@ -88,7 +88,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-    event.target.setVolume(40);
+    event.target.setVolume(100);
     // document.getElementById('lyrics').innerHTML = 'Nhấn Start để bắt đầu!';
 }
 
