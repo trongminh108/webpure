@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'LeagueSpartan';
+    src: url('../../assets/fonts/League_Spartan/LeagueSpartan-VariableFont_wght.ttf')
+        format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'LeagueSpartan';
+    height: 100vh;
+    width: 100vw;
+    background-color: #f0f0f0;
+    margin: 0;
+    position: absolute;
+    overflow: hidden;
+
+    & #lyrics {
+        font-size: 3rem;
+    }
+}
